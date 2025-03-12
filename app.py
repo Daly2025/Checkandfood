@@ -8,7 +8,7 @@ app.secret_key="123456"
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return "hola mundo"
+    return render_template('home.html')
 
 
 if __name__ == '__main__':    
