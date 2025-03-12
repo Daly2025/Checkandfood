@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Reservas</title>
+</head>
+<body>
+    <h2>Gestionar Reservas</h2>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Dirección</th>
+            <th>Comensales</th>
+            <th>Estado</th>
+            <th>Acción</th>
+        </tr>
+        {% for reservation in reservations %}
+        <tr>
+            <td>{{ reservation.date }}</td>
+            <td>{{ reservation.customer_name }}</td>
+            <td>{{ reservation.address }}</td>
+            <td>{{ reservation.diner }}</td>
+            <td>{{ reservation.status }}</td>
+            <td>
+                <!-- Confirmar reserva -->
+                <form action="/manage_reservations" method="POST" style="display:inline;">
+                    <input type="hidden" name="reserve_id" value="{{ reservation.reserve_id }}">
+                    <input type="hidden" name="action" value="confirm">
+                    <label for="table_id">Mesa:</label>
+                    <input type="number" name="table_id" value="{{ reservation.table_id }}" placeholder="ID de mesa">
+                    <button type="submit">Confirmar</button>
+                </form>
+                <!-- Rechazar reserva -->
+                <form action="/manage_reservations" method="POST" style="display:inline;">
+                    <input type="hidden" name="reserve_id" value="{{ reservation.reserve_id }}">
+                    <input type="hidden" name="action" value="reject">
+                    <button type="submit">Rechazar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
