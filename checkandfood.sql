@@ -1,8 +1,6 @@
-create database checkandfood;
-use checkandfood;
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: check&food
+-- Host: 127.0.0.1    Database: checkandfood
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.32-MariaDB
 
@@ -27,12 +25,22 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `username` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
+  `phone_number` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`customer_id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
+  UNIQUE KEY `username_UNIQUE` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `reserve`
@@ -47,7 +55,7 @@ CREATE TABLE `reserve` (
   `address` varchar(45) DEFAULT NULL,
   `phone` varchar(10) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
-  `capacity` varchar(45) DEFAULT NULL,
+  `diner` int(11) DEFAULT NULL,
   `reviews` varchar(45) DEFAULT NULL,
   `restaurant_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -60,6 +68,15 @@ CREATE TABLE `reserve` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `reserve`
+--
+
+LOCK TABLES `reserve` WRITE;
+/*!40000 ALTER TABLE `reserve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reserve` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `restaurant`
 --
 
@@ -69,12 +86,26 @@ DROP TABLE IF EXISTS `restaurant`;
 CREATE TABLE `restaurant` (
   `restaurant_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `username` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `capacity` int(11) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `restaurantcol` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`restaurant_id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
+  UNIQUE KEY `username_UNIQUE` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `restaurant`
+--
+
+LOCK TABLES `restaurant` WRITE;
+/*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
+/*!40000 ALTER TABLE `restaurant` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -85,4 +116,4 @@ CREATE TABLE `restaurant` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-11 18:57:59
+-- Dump completed on 2025-03-12 15:58:41

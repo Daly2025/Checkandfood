@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecciona un Restaurante</title>
+</head>
+<body>
+    <h1>Selecciona un Restaurante</h1>
+    <form action="#" method="POST">
+        <label for="restaurantes">Restaurantes:</label>
+        <select id="restaurantes" name="restaurante" required>
+            <!-- Opción predeterminada vacía -->
+            <option value="" disabled selected>Seleccione un restaurante</option>
+            <!-- Opciones dinámicas -->
+            {% for restaurante in restaurantes %}
+                <option value="{{ restaurante.customer_id }}">{{ restaurante.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

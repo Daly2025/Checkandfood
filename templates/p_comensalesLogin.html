@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Botones</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .restaurant {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .comensal {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón para "Restaurant" -->
+    <form action="https://example.com/restaurant" method="POST">
+        <button type="submit" class="restaurant">Restaurant</button>
+    </form>
+
+    <!-- Botón para "Comensal" -->
+    <form action="https://example.com/comensal" method="POST">
+        <button type="submit" class="comensal">Comensal</button>
+    </form>
+</body>
+</html>
