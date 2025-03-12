@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cliente - CheckAndFood</title>
+    <style>
+        /* Fondo degradado en naranja y verde */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #FFA500, #32CD32); /* Naranja a verde */
+            background-size: cover;
+            color: white;
+        }
+
+        h1 {
+            color: white;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Iconos decorativos */
+        .iconos-comida {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .icono {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registro de Cliente</h1>
+    
+    <!-- Formulario de Registro -->
+    <form action="/registro_clientes" method="POST" autocomplete="off">
+        <input type="text" name="nombre" placeholder="Nombre" required autocomplete="new-name">
+        <input type="email" name="email" placeholder="Correo Electrónico" required autocomplete="new-email">
+        <input type="tel" name="telefono" placeholder="Teléfono" required autocomplete="new-tel">
+        <input type="password" name="password" placeholder="Contraseña" required autocomplete="new-password">
+        <input type="password" name="repetir_password" placeholder="Repetir Contraseña" required autocomplete="new-password">
+        <button type="submit" class="button">Registrarse</button>
+    </form>
+
+    <!-- Iconos decorativos -->
+    <div class="iconos-comida">
+        <img src="https://img.icons8.com/color/96/000000/pizza.png" alt="Pizza" class="icono">
+        <img src="https://img.icons8.com/color/96/000000/hamburger.png" alt="Hamburguesa" class="icono">
+        <img src="https://img.icons8.com/color/96/000000/salad.png" alt="Ensalada" class="icono">
+        <img src="https://img.icons8.com/color/96/000000/sushi.png" alt="Sushi" class="icono">
+    </div>
+</body>
+</html>
+
+
+

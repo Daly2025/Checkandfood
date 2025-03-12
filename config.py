@@ -1,6 +1,7 @@
 # config.py
 import os
 
+
 class Config:
     # Clave secreta para la sesión de Flask
     SECRET_KEY = os.environ.get('SECRET_KEY', 'clave_secreta_por_defecto')
