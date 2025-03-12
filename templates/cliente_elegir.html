@@ -14,7 +14,7 @@
             <option value="" disabled selected>Seleccione un restaurante</option>
             <!-- Opciones dinámicas -->
             {% for restaurante in restaurantes %}
-                <option value="{{ restaurante.customer_id }}">{{ restaurante.name }}</option>
+                <option value="{{ restaurante.product_id }}">{{ restaurante.name }}</option>
             {% endfor %}
         </select>
         <button type="submit">Enviar</button>
