@@ -10,5 +10,5 @@ class Config:
     DB_USER = os.environ.get('DB_USER', 'root')
     DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
     #DB_NAME = os.environ.get('DB_NAME', 'checkandfood')
-    DB_NAME = os.environ.get('DB_NAME', 'tiendamvc')
+    DB_NAME = os.environ.get('DB_NAME', 'reservas')
     # Otras configuraciones que requieras...

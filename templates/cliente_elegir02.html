@@ -46,7 +46,7 @@
             <option value="" disabled selected>Seleccione un restaurante</option>
             <!-- Opciones dinámicas -->
             {% for restaurante in restaurantes %}
-                <option value="{{ restaurante.product_id }}">{{ restaurante.name }}</option>
+                <option value="{{ restaurante.restaurant_id }}">{{ restaurante.name }}</option>
             {% endfor %}
         </select>
  
@@ -59,11 +59,12 @@
             <label for="comensales">Número de Comensales:</label>
             <input type="number" id="comensales" name="comensales" min="1" required>
         </div>
+            <input type="number" id="cliente" name="id_cliente" value="1" readonly>
 
         <button type="submit">Confirmar Reserva</button>
 
         <h2>{{mensaje}}</h2>
-        
+
     </form>
 </body>
 </html>

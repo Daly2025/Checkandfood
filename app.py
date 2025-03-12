@@ -11,13 +11,15 @@ def elegir():
     conexion = db.get_connection()
     try:
         with conexion.cursor() as cursor:
-            consulta = "SELECT * FROM product"
+            consulta = "SELECT * FROM restaurant"
             cursor.execute(consulta)
             resultados = cursor.fetchall()
 
             #nombres_restaurantes = [registro['name'] for registro in resultados]
             #id_restaurantes = [registro['customer_id'] for registro in resultados]
-            
+            session['ID_restaurante'] = 
+
+
             return render_template("cliente_elegir02.html", restaurantes=resultados)
             #return render_template("cliente_elegir.html", restaurantes=nombres_restaurantes,  IDrestaurantes=id_restaurantes)
             #return render_template("cliente_elegir.html", restaurantes=nombres_restaurantes)
@@ -35,12 +37,13 @@ def login():
     id_restaurante = request.form['restaurante'] 
     fecha = request.form['fecha']
     numero_comensales = request.form['comensales']
+    cliente = request.form['id_cliente']
     #creamos la conexion
     conexion = db.get_connection()
     try:
         with conexion.cursor() as cursor:
             #creamos la consulta
-            consulta = "SELECT * FROM product WHERE product_id = %s" # AND password = %s"
+            consulta = "SELECT * FROM restaurant WHERE restaurant_id = %s" # AND password = %s"
             datos = (id_restaurante)  #username,password)
             cursor.execute(consulta,datos)
             resultados = cursor.fetchone()
