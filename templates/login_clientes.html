@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Clientes</title>
+    <title>Login Clientes - CheckAndFood</title>
     <style>
-        /* Estilos CSS */
+        /* Fondo degradado en naranja y verde */
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -13,13 +13,16 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #f8f8f8;
             margin: 0;
+            background: linear-gradient(135deg, #FFA500, #32CD32); /* Degradado naranja a verde */
+            background-size: cover;
+            color: white;
         }
 
         h1 {
-            color: #333;
+            color: white;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para resaltar el título */
         }
 
         form {
@@ -27,7 +30,7 @@
             flex-direction: column;
             gap: 10px;
             width: 300px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,6 +64,21 @@
             margin-top: 10px;
             text-align: center;
         }
+
+        /* Iconos decorativos */
+        .iconos-comida {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .icono {
+            width: 50px;
+            height: 50px;
+        }
     </style>
 </head>
 <body>
@@ -69,10 +87,20 @@
         <input type="email" name="email" placeholder="Correo Electrónico" required autocomplete="new-email">
         <input type="password" name="password" placeholder="Contraseña" required autocomplete="new-password">
         <button type="submit" class="button">Iniciar Sesión</button>
-        <a href="/registro_clientes"><p>Si no tienes cuenta, regístrate</p></a>
+        <p style="color: black; font-family: 'Arial', sans-serif;">Si no tienes cuenta, <a href="/registro_clientes" style="color: blue; font-family: 'Arial', sans-serif; text-decoration: underline;">regístrate</a></p>
+
     </form>
-</body>
-</html>
+
+    <!-- Iconos decorativos -->
+    <div class="iconos-comida">
+        <img src="https://img.icons8.com/color/96/000000/pizza.png" alt="Pizza" class="icono">
+        <img src="https://img.icons8.com/color/96/000000/hamburger.png" alt="Hamburguesa" class="icono">
+        <img src="https://img.icons
+
+
+
+
+
 
 
 
