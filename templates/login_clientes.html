@@ -66,12 +66,13 @@
 <body>
     <h1>Inicio de Sesión</h1>
     <form action="/login_clientes" method="POST">
-        <input type="email" name="email" placeholder="Correo Electrónico" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
+        <input type="email" name="email" placeholder="Correo Electrónico" required autocomplete="off">
+        <input type="password" name="password" placeholder="Contraseña" required autocomplete="off">
         <button type="submit" class="button">Iniciar Sesión</button>
-        <a href="/registro_clientes"><p>si no tienes cuenta registrate</p> aqui</a>
+        <a href="/registro_clientes"><p>Si no tienes cuenta, regístrate</p></a>
     </form>
 </body>
 </html>
+
 
 
