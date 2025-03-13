@@ -1,0 +1,182 @@
+/* Fondo degradado en naranja y verde */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Cambié a flex-start para alinear más arriba */
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #FFA500, #32CD32); /* Naranja a verde */
+    background-size: cover;
+    color: white;
+    padding: 20px; /* Añadí padding para no tocar los bordes de la pantalla */
+}
+
+h1 {
+    color: white;
+    font-size: 36px; /* Reducido tamaño de la fuente */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
+    margin-bottom: 10px; /* Menos espacio debajo */
+    margin-top: 0; /* Asegurarse que esté más cerca de la parte superior */
+    animation: fadeIn 1s ease-out;
+}
+
+h2 {
+    color: white;
+    font-size: 20px; /* Título más pequeño */
+    margin-top: 0; /* También sin espacio arriba */
+    margin-bottom: 20px; /* Un poco más de espacio abajo */
+    animation: fadeIn 1.5s ease-out;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Menos espacio entre los elementos */
+    width: 250px; /* Formulario más estrecho */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+    padding: 15px; /* Menos relleno */
+    border-radius: 8px; /* Bordes más suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    margin-top: 40px; /* Aseguramos espacio entre el título y el formulario */
+    animation: slideUp 0.6s ease-out;
+}
+
+label {
+    font-size: 14px; /* Texto más pequeño */
+    margin-bottom: 5px;
+    color: black;
+    font-weight: bold;
+    text-align: left; /* Alineación izquierda para los labels */
+}
+
+input {
+    padding: 8px; /* Menos relleno */
+    font-size: 13px; /* Tamaño de fuente más pequeño */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #32CD32; /* Verde */
+    box-shadow: 0 0 5px #32CD32;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px; /* Fuente más pequeña */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Estilo de la tabla */
+table {
+    width: 80%;
+    margin-top: 30px; /* Ajustado para que no esté tan cerca del formulario */
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+    padding: 10px; /* Reducido el relleno de las celdas */
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px; /* Fuente más pequeña en la tabla */
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Iconos decorativos */
+.iconos-comida {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.icono {
+    width: 40px; /* Iconos más pequeños */
+    height: 40px;
+}
+
+/* Botones de las acciones */
+.acciones button {
+    padding: 8px;
+    margin: 5px;
+    background-color: #FF6347; /* Tomate */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px; /* Botones con fuente más pequeña */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.acciones button:hover {
+    background-color: #FF4500; /* Rojo Naranja */
+    transform: scale(1.05);
+}
+
+.acciones button:active {
+    transform: scale(0.98);
+}
+
+/* Color de texto en las celdas */
+td {
+    color: black;
+}
+
+/* Animación para aparecer los formularios */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de fade-in para los títulos */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#ops {
+    display: contents;
+    gap: 10px;
+}

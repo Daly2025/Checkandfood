@@ -5,148 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión del Restaurante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_reservations.css') }}">
 </head>
 
 <body>
-    <style>
-        /* Fondo degradado en naranja y verde */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #FFA500, #32CD32); /* Naranja a verde */
-            background-size: cover;
-            color: white;
-        }
-
-        h1 {
-            color: white;
-            font-size: 48px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para resaltar */
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            color: white;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 300px;
-            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: black;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        input {
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        button {
-            padding: 12px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        /* Estilo de la tabla */
-        table {
-            width: 80%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f2f2f2;
-        }
-
-        /* Iconos decorativos */
-        .iconos-comida {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .icono {
-            width: 50px;
-            height: 50px;
-        }
-
-        /* Botones de las acciones */
-        .acciones button {
-            padding: 8px;
-            margin: 5px;
-            background-color: #FF6347; /* Tomate */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .acciones button:hover {
-            background-color: #FF4500; /* Rojo Naranja */
-        }
-        td{
-            color: black;
-        }
-    </style>
+    
     <h1>Gestión del Restaurante</h1>
 
     <!-- Formulario para actualizar la capacidad -->
     <h2>Capacidad del Restaurante</h2>
-    <form method="POST">
-        <label for="capacity">Capacidad actual: {{ capacity.capacity }}</label><br>
+    
+       
         <input type="number" name="capacity" value="{{ capacity.capacity }}" required>
-        <button type="submit">Actualizar capacidad</button>
-    </form>
+        
+    
 
     <hr>
 
@@ -172,7 +44,7 @@
                 <td>{{ reservation.dinner }}</td>
                 <td>{{ reservation.estatus }}</td>
                 <td>
-                    <form method="POST">
+                    <form id="ops" method="POST">
                         <input type="hidden" name="reserve_id" value="{{ reservation.reserve_id }}">
                         <button type="submit" name="action" value="confirm">Confirmar</button>
                         <button type="submit" name="action" value="reject">Rechazar</button>
