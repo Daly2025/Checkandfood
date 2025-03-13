@@ -35,7 +35,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            width: 250px; /* Ajustar el ancho del formulario */
+            width: 285px; /* Ajustar el ancho del formulario */
             background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
             padding: 20px;
             border-radius: 10px;
@@ -58,6 +58,7 @@
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
+           
         }
 
         .button:hover {
@@ -100,11 +101,15 @@
         <input type="text" name="address" id="address" required>
         <label for="capacity">Nº commensals</label>
         <input type="number" name="capacity" id="capacity" required>
-        <button type="submit">Register</button>
+        <button class="btnRegister" type="submit">Register</button>
+        
+
       
     </form>
-    <br><br>
-    <a href="{{ url_for('restaurantes') }}"><button type="submit">Back</button></a>
+   <br>
+    <form action="/restaurantes" method="GET">
+        <button class="btnBackRegister" type="submit">Back</button>
+    
         
      
 

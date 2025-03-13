@@ -40,7 +40,7 @@ input {
 
 button {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
@@ -52,3 +52,14 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+.btnBackRegister {
+    background-color: #007bff !important;
+}
+
+.btnRegister {
+    background-color:#45a049 !important;
+}
+.btnBackRegister:hover {
+    background-color: #0056b3 !important;
+}   
