@@ -38,6 +38,7 @@
 </head>
 <body>
     <h1>Reserva tu Restaurante</h1>
+    <h2>ususario: {{nombreCliente}}</h2>
     <form action="elegido" method="POST">
         <label for="restaurantes">Selecciona un Restaurante:</label>
         <select id="restaurantes" name="restaurante" onchange="mostrarCamposReserva()" required>
@@ -51,6 +52,8 @@
         </select>
  
 
+
+
         <!-- Campos adicionales: fecha y número de comensales -->
         <div id="campos-reserva">
             <label for="fecha">Fecha de la Reserva:</label>
@@ -63,8 +66,78 @@
 
         <button type="submit">Confirmar Reserva</button>
 
-        <h2>{{mensaje}}</h2>
+        <h2>{{ mensaje | safe }}</h2>
 
     </form>
+
+<hr>
+
+<label for="clientes">CLIENTES:</label>
+<select id="c" name="ccc" required>
+
+    <!-- Opción predeterminada vacía -->
+    <option value="" disabled selected>Seleccione un CLIENTE</option>
+    <!-- Opciones dinámicas -->
+    {% for a in clientes %}
+        <option value="{{ a.customer_id }}">{{ a.name }}</option>
+    {% endfor %}
+</select>
+
+
+
+<section class="contenedorPrincipal">
+    <h3>Listado tareas del usuario con ID {{nombreCliente}} </h3>
+
+    <div class="lista">
+        <table id="tablaIncidencias">
+            <thead>
+                <th>fecha</th>
+                <th>Restaurant</th>
+                <th>estado</th>
+                <th>numero de comensales</th>
+                <th>Operaciones</th>
+            </thead>
+            <tbody id="tbodyTareas">
+
+                <?php
+                while ($row = $result->fetch()) {
+                    if ($row['estado'] == null) 
+                        {$estado = 'Terminado';} else {$estado = 'En proceso';}
+                    echo "<tr>                            
+                    <td>" . 
+                        $row['fecha_creacion'] .
+                    "</td>
+                    <td>" . 
+                        $row['titulo'] .
+                    "</td>" . 
+                    "<td>". 
+                        $estado .
+                    "</td>" . 
+                    "<td>". 
+                        $row['tareas_id'] .
+                    "</td>" .
+                    "<td> 
+                        <a href='tarea_ver.php?tarea_id="
+                            . $row['tareas_id']."'>ver</a> 
+                        | 
+                        <a href='tarea_editar.php?tarea_id="
+                            . $row['tareas_id']."'>editar</a>
+                        | 
+                        <a href='tarea_borrar.php?tarea_id="
+                            . $row['tareas_id']."'>eliminar</a>
+                    </td>
+                    </tr>";
+
+                }
+                ?>
+                
+            </tbody>
+
+        </table>
+    </div>
+</section>
+
+<!---->
+
 </body>
 </html>

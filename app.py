@@ -2,7 +2,6 @@ from flask import Flask,render_template,request,redirect,url_for,session
 import pymysql
 import db
 
-
 app = Flask(__name__)
 app.secret_key="123456"
 
@@ -14,13 +13,15 @@ def elegir():
             consulta = "SELECT * FROM restaurant"
             cursor.execute(consulta)
             resultados = cursor.fetchall()
+        
+            consulta02 = "SELECT * FROM customer"
+            cursor.execute(consulta02)
+            resultados02 = cursor.fetchall()
 
-            #nombres_restaurantes = [registro['name'] for registro in resultados]
-            #id_restaurantes = [registro['customer_id'] for registro in resultados]
-            session['ID_restaurante'] = 
-
-
-            return render_template("cliente_elegir02.html", restaurantes=resultados)
+            #return render_template("cliente_elegir02.html", restaurantes=resultados, nombreCliente='esta fijo por ahora')
+            return render_template("cliente_elegir02.html", restaurantes=resultados, nombreCliente='esta fijo por ahora', clientes=resultados02)
+            
+            
             #return render_template("cliente_elegir.html", restaurantes=nombres_restaurantes,  IDrestaurantes=id_restaurantes)
             #return render_template("cliente_elegir.html", restaurantes=nombres_restaurantes)
             #return render_template("cliente_elegir.html",restaurantes=resultados)
@@ -43,6 +44,44 @@ def login():
     try:
         with conexion.cursor() as cursor:
             #creamos la consulta
+            consulta = "INSERT INTO reserve (date, dinner, restaurant_id, customer_id) VALUES (%s, %s, %s, %s)"
+            datos = (fecha,numero_comensales,id_restaurante,cliente)  #username,password)
+            cursor.execute(consulta,datos)
+            resultados = cursor.fetchone()
+            conexion.commit()
+            return render_template("cliente_elegir02.html",mensaje="<h1><a href='/'> confirmada </a></h1>")
+
+    except Exception as e:
+        print("Ocurrió un error al conectar a la bbdd: ", e)
+    finally:    
+        conexion.close()
+        print("Conexión cerrada") 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/elegido04',methods=['POST'])
+def login444():
+    #obtener los datos del formulario
+    id_restaurante = request.form['restaurante'] 
+    fecha = request.form['fecha']
+    numero_comensales = request.form['comensales']
+    cliente = request.form['id_cliente']
+    #creamos la conexion
+    conexion = db.get_connection()
+    try:
+        with conexion.cursor() as cursor:
+            #creamos la consulta
             consulta = "SELECT * FROM restaurant WHERE restaurant_id = %s" # AND password = %s"
             datos = (id_restaurante)  #username,password)
             cursor.execute(consulta,datos)
@@ -54,11 +93,7 @@ def login():
                 print("habían " + str(resultados['stock']))
                 print("restando " + numero_comensales)
                 print("quedan " + str(resultados['stock'] - int(numero_comensales)))
-
-
-
-
-
+                
 
                 #guardar datos en session
                 #session['username'] = username
@@ -70,7 +105,15 @@ def login():
     finally:    
         conexion.close()
         print("Conexión cerrada") 
-          
+
+
+
+
+
+
+
+
+
     
 @app.route('/elegido02',methods=['POST'])
 def login666():
