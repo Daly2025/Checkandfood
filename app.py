@@ -58,7 +58,7 @@ def register():
                 cursor.execute(sql, (name, email, hashed_password, address, capacity, phone))
                 conexion.commit()
             conexion.close()
-            return redirect(url_for('home'))
+            return redirect(url_for('restaurantes'))
         except Exception as e:
             return f"Ha ocurrido un error en la base de datos: {e}"
     return render_template('register_restaurant.html')
