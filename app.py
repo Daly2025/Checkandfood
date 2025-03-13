@@ -157,9 +157,84 @@ def login_clientes():
             return f"Ha ocurrido un error en la base de datos: {e}"
     return render_template('login_clientes.html')
 
-# Ruta para el dashboard
-@app.route('/dashboard')
+    # CLIENTES Ruta para gestionar las reservas 
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+    if 'restaurant_id' not in session:
+        return redirect(url_for('login'))
+    
+    
+    #restaurant_id = session['restaurant_id']
+    connection = db.get_connection()
+    cursor = connection.cursor()
+
+   #accion para cambiar estado a confirmado y rechazado
+   
+    if request.method == 'POST':
+        id_restaurante = request.form['restaurante'] 
+        fecha = request.form['fecha']
+        numero_comensales = request.form['comensales']
+        cliente = session['user_id']
+        #creamos la conexion
+        #conexion = db.get_connection()
+        try:
+            with connection.cursor() as cursor:
+                
+                #creamos la consulta
+                consulta = "INSERT INTO reserve (date, dinner, restaurant_id, customer_id) VALUES (%s, %s, %s, %s)"
+                datos = (fecha,numero_comensales,id_restaurante,cliente)
+                cursor.execute(consulta,datos)
+                resultados = cursor.fetchone()
+                connection.commit()
+
+                # Obtener todas las reservas del restaurante
+                # cursor.execute('''
+                #     SELECT r.reserve_id, r.date, r.dinner, r.estatus, c.name as customer_name,c.phone_number
+                #     FROM reserve r
+                #     JOIN customer c ON r.customer_id = c.customer_id
+                #     WHERE r.restaurant_id = %s;
+                # ''', (1,))
+                # reservations = cursor.fetchall()
+                return redirect(url_for('dashboard'))
+
+
+                #return render_template('customer_dashboard.html',mensaje="<h1><a href='/'> confirmada </a></h1>")
+
+        except Exception as e:
+            print("Ocurrió un error al conectar a la bbdd: ", e)
+        finally:    
+            connection.close()
+            print("Conexión cerrada") 
+
+       
+    # Obtener todas las reservas del restaurante
+    cursor.execute("SELECT * FROM reserve WHERE customer_id=%s", (session['user_id'],))
+    
+    reservations = cursor.fetchall()
+    
+    cursor.execute("SELECT * FROM restaurant")
+    restaurantes = cursor.fetchall()
+    cursor.close()
+    connection.close()
+
+    return render_template('customer_dashboard.html', restaurantes=restaurantes, reservations=reservations)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Ruta para el dashboard
+@app.route('/dashboard000')
+def dashboard000():
     if 'user_id' not in session:
        return redirect(url_for('login_clientes'))
     
