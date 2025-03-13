@@ -160,10 +160,28 @@ def login_clientes():
 # Ruta para el dashboard
 @app.route('/dashboard')
 def dashboard():
-    if 'user_id' in session:
-        return f"¡Bienvenido, {session['user_name']}!"
-    else:
-        return redirect(url_for('login_clientes'))
+    if 'user_id' not in session:
+       return redirect(url_for('login_clientes'))
+    
+    conexion = db.get_connection()
+    try:
+        with conexion.cursor() as cursor:
+            consulta = "SELECT * FROM restaurant"
+            cursor.execute(consulta)
+            resultados = cursor.fetchall()
+        
+            consulta02 = "SELECT * FROM customer"
+            cursor.execute(consulta02)
+            resultados02 = cursor.fetchall()
+
+            return render_template("customer_dashboard.html", restaurantes=resultados, nombreCliente='esta fijo por ahora', clientes=resultados02)
+        
+    except Exception as e:  
+        print("Ocurrió un error al conectar a la bbdd: ", e)
+    finally:    
+        conexion.close()
+        print("Conexión cerrada")  
+ 
 
 # Ruta para logout
 @app.route('/logout')
