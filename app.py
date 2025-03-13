@@ -22,40 +22,36 @@ def manage_reservations():
     connection = db.get_connection()
     cursor = connection.cursor()
 
-    # Si el formulario se envía (para confirmar o rechazar la reserva)
+   #accion para cambiar estado a confirmado y rechazado
+   
     if request.method == 'POST':
         reserve_id = request.form['reserve_id']
-        action = request.form['action']
-        table_id = request.form.get('table_id', None)  # Mesa asignada (puede ser opcional en algunos casos)
-        
-        if action == 'confirm':
-            cursor.execute('''
-                UPDATE reserve
-                SET table_id = %s, status = 'confirmed'
-                WHERE reserve_id = %s AND restaurant_id = %s
-            ''', (table_id, reserve_id, restaurant_id))
-        elif action == 'reject':
-            cursor.execute('''
-                UPDATE reserve
-                SET status = 'rejected'
-                WHERE reserve_id = %s AND restaurant_id = %s
-            ''', (reserve_id, restaurant_id))
-        
-        connection.commit()
-
+        accion = request.form['action']
+        if accion == 'confirm':
+            cursor.execute('''UPDATE reserve SET estatus = 'confirmado' WHERE reserve_id = %s;''', (reserve_id,))
+            connection.commit()
+        elif accion == 'reject':
+            cursor.execute('''UPDATE reserve SET estatus = 'rechazado' WHERE reserve_id = %s;''', (reserve_id,))
+            
+            connection.commit()
+       
     # Obtener todas las reservas del restaurante
     cursor.execute('''
-        SELECT r.reserve_id, r.date, r.address, r.diner, r.reviews, r.status, c.name as customer_name, r.table_id
+        SELECT r.reserve_id, r.date, r.dinner, r.estatus, c.name as customer_name,c.phone_number
         FROM reserve r
         JOIN customer c ON r.customer_id = c.customer_id
-        WHERE r.restaurant_id = %s
+        WHERE r.restaurant_id = %s;
     ''', (1,))
     reservations = cursor.fetchall()
-
+    
+    cursor.execute('''
+        SELECT capacity FROM restaurant WHERE restaurant_id = %s;
+    ''', (1,))
+    capacity = cursor.fetchone()
     cursor.close()
     connection.close()
 
-    return render_template('manage_reservations.html', reservations=reservations)
+    return render_template('manage_reservations.html', reservations=reservations,capacity=capacity)
 
 # Ruta para registro de clientes
 @app.route('/registro_clientes', methods=['GET', 'POST'])
