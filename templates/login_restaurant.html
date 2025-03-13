@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login_Restaurante</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_restaurant.css') }}">
+</head>
+<body>
+    <style>
+        /* Fondo degradado en naranja y verde */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #FFA500, #32CD32); /* Degradado naranja a verde */
+            background-size: cover;
+            color: white;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para resaltar el título */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .button {
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Iconos decorativos */
+        .iconos-comida {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .icono {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <h1>Login</h1>
+    <form action="{{ url_for('login') }}" method="POST">
+        <label style="color: black;" for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+        <br><br>
+        <label style="color:black" for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <br><br>
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <form action="/register" method="GET">
+        <button type="submit">Create new account</button>
+    </form>
+</body>
+</html>
