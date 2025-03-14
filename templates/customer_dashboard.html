@@ -69,11 +69,11 @@
         <thead>
             <tr>
                 <th>FECHA</th>
+                <th>ID Restaurant</th>
                 <th>Restaurant</th>
-                
                 <th>Comensales</th> 
                 <th>Estatus</th>
-                <!-- <th>Acciones</th> -->
+                <th>Acciones</th> 
             </tr>
         </thead>
         <tbody>
@@ -81,14 +81,15 @@
             <tr>
                 <td>{{ reservation.date }}</td>
                 <td>{{ reservation.restaurant_id }}</td>
+                <td>{{ reservation.restaurant_id }}</td>
                 <td>{{ reservation.dinner }}</td>               
                 <td>{{ reservation.estatus }}</td>
                
                 <td>
                     <form method="POST">
                         <input type="hidden" name="reserve_id" value="{{ reservation.reserve_id }}">
-                        <button type="submit" name="action" value="confirm">Confirmar</button>
-                        <button type="submit" name="action" value="reject">Rechazar</button>
+                        <button type="submit" name="action" value="reject">Cancelar</button>
+                        
                         
 
                     </form>

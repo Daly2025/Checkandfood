@@ -172,7 +172,7 @@ def dashboard():
 
    #accion para cambiar estado a confirmado y rechazado
    
-    if request.method == 'POST':
+    if (request.method == 'POST' and ('restaurante' in request.form)):
         id_restaurante = request.form['restaurante'] 
         fecha = request.form['fecha']
         numero_comensales = request.form['comensales']
@@ -208,7 +208,18 @@ def dashboard():
             connection.close()
             print("Conexión cerrada") 
 
-       
+
+    if (request.method == 'POST' and request.form['action']):
+        reserve_id = request.form['reserve_id']
+        accion = request.form['action']
+        if accion == 'confirm':
+            cursor.execute('''UPDATE reserve SET estatus = 'confirmado' WHERE reserve_id = %s;''', (reserve_id,))
+            connection.commit()
+        elif accion == 'reject':
+            cursor.execute('''UPDATE reserve SET estatus = 'cancelado por cliente' WHERE reserve_id = %s;''', (reserve_id,))
+            
+            connection.commit()
+
     # Obtener todas las reservas del restaurante
     cursor.execute("SELECT * FROM reserve WHERE customer_id=%s", (session['user_id'],))
     
