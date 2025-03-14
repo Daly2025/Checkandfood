@@ -10,40 +10,35 @@
 
 <body>
 
-   <nav>
-    <h1>Gestión del Restaurante</h1>
-    <h2>Capacidad del Restaurante</h2>
-    <input type="number" name="capacity" value="{{ capacity.capacity }}" required>
-    <!-- button cerrar sesion-->
-    
-        <a href=""></a><button type="submit">Cerrar Sesión</button>
-    
-   </nav>
-    
-        
-    
+    <header>
+        <h1>Restaurante {{restaurant_name.name}}</h1>
+        <a href="{{url_for('logout')}}"><button type="submit">Cerrar Sesión</button></a>
+    </header>
+
+    <h2>Capacidad</h2>
+    <input id="capacidad" type="number" name="capacity" value="{{ capacity.capacity }}" readonly>
 
     <hr>
 
     <!-- Tabla para ver y gestionar las reservas -->
-    <h2>Reservas</h2>
-    <table border="1">
+    <h1>Reservas</h1>
+    <table >
         <thead>
             <tr>
                 <th>Cliente</th>
                 <th>Teléfono</th>
                 <th>Fecha</th>
-                <th>Comensales</th> 
+                <th>Comensales</th>
                 <th>Estatus</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for reservation in reservations %}
-            <tr>
+            <tr class="{% if reservation.estatus == 'rechazado' %}rechazada{% endif %}">
                 <td>{{ reservation.customer_name }}</td>
                 <td>{{ reservation.phone_number }}</td>
-                <td>{{ reservation.date }}</td>               
+                <td>{{ reservation.date }}</td>
                 <td>{{ reservation.dinner }}</td>
                 <td>{{ reservation.estatus }}</td>
                 <td>
@@ -51,13 +46,9 @@
                         <input type="hidden" name="reserve_id" value="{{ reservation.reserve_id }}">
                         <button type="submit" name="action" value="confirm">Confirmar</button>
                         <button type="submit" name="action" value="reject">Rechazar</button>
-                        
 
                     </form>
-                    
                 </td>
-                
-
             </tr>
             {% endfor %}
         </tbody>
