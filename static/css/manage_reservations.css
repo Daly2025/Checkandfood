@@ -12,7 +12,28 @@ body {
     color: white;
     padding: 20px; /* Añadí padding para no tocar los bordes de la pantalla */
 }
+header{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    position: relative;
+}
 
+header h1{
+    text-align: center;
+    margin: 0;
+    flex-grow: 1;
+}
+header a{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+header button{
+    background-color: green;
+}
 h1 {
     color: white;
     font-size: 36px; /* Reducido tamaño de la fuente */
@@ -28,6 +49,19 @@ h2 {
     margin-top: 0; /* También sin espacio arriba */
     margin-bottom: 20px; /* Un poco más de espacio abajo */
     animation: fadeIn 1.5s ease-out;
+}
+
+#capacidad{
+    color: #000000;
+    font-size: 15px; /* Título más pequeño */
+    text-align: center;
+    
+    width: 30px;
+}
+.rechazada {
+    text-decoration: line-through; 
+    text-decoration-thickness: 3px; 
+    color: gray;
 }
 
 form {

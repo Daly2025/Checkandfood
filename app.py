@@ -70,7 +70,7 @@ def manage_reservations():
         return redirect(url_for('login'))
     
     
-    #restaurant_id = session['restaurant_id']
+    restaurant_id = session['restaurant_id']
     connection = db.get_connection()
     cursor = connection.cursor()
 
@@ -84,26 +84,29 @@ def manage_reservations():
             connection.commit()
         elif accion == 'reject':
             cursor.execute('''UPDATE reserve SET estatus = 'rechazado' WHERE reserve_id = %s;''', (reserve_id,))
-            
-            connection.commit()
        
+          
+            connection.commit()
+    # Nombre restaurante
+    cursor.execute('''SELECT name FROM restaurant WHERE restaurant_id = %s;''', (restaurant_id,))
+    restaurant_name = cursor.fetchone()  
     # Obtener todas las reservas del restaurante
     cursor.execute('''
         SELECT r.reserve_id, r.date, r.dinner, r.estatus, c.name as customer_name,c.phone_number
         FROM reserve r
         JOIN customer c ON r.customer_id = c.customer_id
-        WHERE r.restaurant_id = %s;
-    ''', (1,))
+        WHERE r.restaurant_id = %s ORDER BY r.date;
+    ''', (restaurant_id,))
     reservations = cursor.fetchall()
     
     cursor.execute('''
         SELECT capacity FROM restaurant WHERE restaurant_id = %s;
-    ''', (1,))
+    ''', (restaurant_id,))
     capacity = cursor.fetchone()
     cursor.close()
     connection.close()
 
-    return render_template('manage_reservations.html', reservations=reservations,capacity=capacity)
+    return render_template('manage_reservations.html', reservations=reservations,capacity=capacity,restaurant_name=restaurant_name)
 
 # Ruta para registro de clientes
 @app.route('/registro_clientes', methods=['GET', 'POST'])
