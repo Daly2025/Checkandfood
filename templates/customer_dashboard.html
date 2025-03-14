@@ -9,6 +9,13 @@
 </head>
 
 <body>
+
+    <header>
+        
+        <a href="{{url_for('logout')}}"><button type="submit">Cerrar Sesión</button></a>
+    </header>
+
+
        <h1>Gestión del CLIENTE</h1>
 
 
@@ -69,7 +76,7 @@
         <thead>
             <tr>
                 <th>FECHA</th>
-                <th>ID Restaurant</th>
+                
                 <th>Restaurant</th>
                 <th>Comensales</th> 
                 <th>Estatus</th>
@@ -80,8 +87,8 @@
             {% for reservation in reservations %}
             <tr>
                 <td>{{ reservation.date }}</td>
-                <td>{{ reservation.restaurant_id }}</td>
-                <td>{{ reservation.restaurant_id }}</td>
+                
+                <td>{{ reservation.restaurant_name }}</td>
                 <td>{{ reservation.dinner }}</td>               
                 <td>{{ reservation.estatus }}</td>
                

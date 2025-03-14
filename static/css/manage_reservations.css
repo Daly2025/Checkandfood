@@ -13,6 +13,31 @@ body {
     padding: 20px; /* Añadí padding para no tocar los bordes de la pantalla */
 }
 
+header{
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    position: relative;
+}
+
+header h1{
+    text-align: center;
+    margin: 0;
+    flex-grow: 1;
+}
+header a{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+header button{
+    background-color: green;
+}
+
+
+
 h1 {
     color: white;
     font-size: 36px; /* Reducido tamaño de la fuente */

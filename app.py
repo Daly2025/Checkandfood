@@ -221,8 +221,18 @@ def dashboard():
             connection.commit()
 
     # Obtener todas las reservas del restaurante
-    cursor.execute("SELECT * FROM reserve WHERE customer_id=%s", (session['user_id'],))
+    ###cursor.execute("SELECT * FROM reserve WHERE customer_id=%s", (session['user_id'],))
     
+    # Obtener todas las reservas del restaurante
+    #SELECT r.reserve_id, r.date, r.dinner, r.estatus, c.name as restaurant_name FROM reserve r   JOIN restaurant c ON r.restaurant_id = c.restaurant_id        WHERE r.customer_id = 2;
+    cursor.execute('''
+        SELECT r.reserve_id, r.date, r.dinner, r.estatus, c.name as restaurant_name
+        FROM reserve r
+        JOIN restaurant c ON r.restaurant_id = c.restaurant_id
+        WHERE r.customer_id = %s;
+    ''', (session['user_id'],))
+    
+
     reservations = cursor.fetchall()
     
     cursor.execute("SELECT * FROM restaurant")
