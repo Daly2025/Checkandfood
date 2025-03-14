@@ -152,7 +152,8 @@ def login_clientes():
                 session['user_name'] = user['name']
                 return redirect(url_for('dashboard'))
             else:
-                return "Credenciales inválidas. Por favor, revisa tu correo y contraseña."
+                return render_template('login_clientes.html', mensaje="usuario inválido")
+                #return "Credenciales inválidas. Por favor, revisa tu correo y contraseña."
         except Exception as e:
             return f"Ha ocurrido un error en la base de datos: {e}"
     return render_template('login_clientes.html')
@@ -160,7 +161,8 @@ def login_clientes():
     # CLIENTES Ruta para gestionar las reservas 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    if 'restaurant_id' not in session:
+    if 'user_id' not in session:
+    #if 'restaurant_id' not in session:
         return redirect(url_for('login'))
     
     
@@ -221,41 +223,6 @@ def dashboard():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-# Ruta para el dashboard
-@app.route('/dashboard000')
-def dashboard000():
-    if 'user_id' not in session:
-       return redirect(url_for('login_clientes'))
-    
-    conexion = db.get_connection()
-    try:
-        with conexion.cursor() as cursor:
-            consulta = "SELECT * FROM restaurant"
-            cursor.execute(consulta)
-            resultados = cursor.fetchall()
-        
-            consulta02 = "SELECT * FROM customer"
-            cursor.execute(consulta02)
-            resultados02 = cursor.fetchall()
-
-            return render_template("customer_dashboard.html", restaurantes=resultados, nombreCliente='esta fijo por ahora', clientes=resultados02)
-        
-    except Exception as e:  
-        print("Ocurrió un error al conectar a la bbdd: ", e)
-    finally:    
-        conexion.close()
-        print("Conexión cerrada")  
  
 
 # Ruta para logout
